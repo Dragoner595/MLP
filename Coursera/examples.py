@@ -1,8 +1,9 @@
 import numpy as np
 import pandas as pd 
+import time
 
 # create a random data set with data 
-rows = 100
+rows = 10000000
 cols = 4
 
 housing_data=np.random.randint(500,2500,size=(rows,cols-3))
@@ -18,7 +19,16 @@ def dot_prod(a,b):
         x=x+a[i]*b[i]
 
     return x
-print(housing_data[:10])
+
 a=housing_data[:,1]
 b=housing_data[:,2]
-print(f"dot_prod(a,b)={dot_prod(a,b)}")
+tic=time.time()
+c=dot_prod(a,b)
+toc=time.time()
+print(f"dot_prod(a,b)={c:.4f}")
+print(f"time for function dot= {1000*(toc-tic):.4f}ms")
+tic=time.time()
+c=np.dot(a,b)
+toc=time.time()
+print(f"Vectorized version={c}")
+print(f"Vectorized time= {1000*(toc-tic):.4f}ms")
