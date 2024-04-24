@@ -44,11 +44,11 @@ def compute_gradient(x,y,w,b):
 
     return dj_dw, dj_db # update value 
 
-print(compute_gradient(x_train,y_train,200,100))
+print(compute_gradient(x_train,y_train,50,100))
 
 # Gradient Descent computation 
 
-def gradient_descent (x,y,w_in,b_in,alpha,num_irters,cost_function,gradient_function):
+def gradient_descent (x,y,w_in,b_in,alpha,num_iters,cost_function,gradient_function):
     """
     Performs gradient descent to fit w,b. Updates w,b by taking 
     num_iters gradient steps with learning rate alpha
@@ -78,7 +78,7 @@ def gradient_descent (x,y,w_in,b_in,alpha,num_irters,cost_function,gradient_func
         #calculate the gradient and update the paramiteres using grident function
         dj_dw,dj_db=gradient_function(x,y,w,b)
 
-        # update paraniters using equation for claculation minimum w and b
+        # update paramiters using equation for claculation minimum w and b
         b = b - alpha * dj_db
         w = w - alpha * dj_dw
 
@@ -91,5 +91,15 @@ def gradient_descent (x,y,w_in,b_in,alpha,num_irters,cost_function,gradient_func
             print(f"Iteration {i:4} : cost {J_history[-1]:0.2e}",
                   f"dj_dw: {dj_dw: 0.3e},dj_db: {dj_db:0.3e}",
                   f"w:{w:0.3e},b:{b:0.5e}")
-    return w,b,J_history,p_history #return w and J,whistory for graphic
+    return w,b,J_history,p_history #return w and J,w  history for graphic
 
+# initialize parameters
+w_init = 0
+b_init = 0
+# some gradient descent settings
+iterations = 10000
+tmp_alpha = 1.0e-2
+# run gradient descent
+w_final, b_final, J_hist, p_hist = gradient_descent(x_train ,y_train, w_init, b_init, tmp_alpha, 
+                                                    iterations, compute_cost, compute_gradient)
+print(f"(w,b) found by gradient descent: ({w_final:8.4f},{b_final:8.4f})")
