@@ -94,15 +94,15 @@ def gradient_descent (x,y,w_in,b_in,alpha,num_iters,cost_function,gradient_funct
     return w,b,J_history,p_history #return w and J,w  history for graphic
 
 # initialize parameters
-w_init = 0
+w_init = 0   
 b_init = 0
 # some gradient descent settings
-iterations = 10000
-tmp_alpha = 1.0e-2
+iterations = 10000   # amount of iteration will be happening 
+tmp_alpha = 1.0e-2   # learning rate 0,01
 # run gradient descent
 w_final, b_final, J_hist, p_hist = gradient_descent(x_train ,y_train, w_init, b_init, tmp_alpha, 
                                                     iterations, compute_cost, compute_gradient)
-print(f"(w,b) found by gradient descent: ({w_final:8.4f},{b_final:8.4f})")
+print(f"(w,b) found by gradient descent: ({w_final:8.4f},{b_final:8.4f})") # final result of our minimal w and b that can be used for future prediction of price 
 
 print(f"1000 sqft house prediction {w_final*1.0 + b_final:0.1f} Thousand dollars")
 print(f"1200 sqft house prediction {w_final*1.2 + b_final:0.1f} Thousand dollars")
