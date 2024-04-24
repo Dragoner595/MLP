@@ -27,7 +27,7 @@ def compute_gradient(x,y,w,b):
         dj_dw (scalar): The gradient of the cost w.r.t the parametes w
         dj_db (scalar): The gradient of the cost w.r.t. the parameter b
     """
-    #number of training wxamples 
+    #number of training examples 
     m=x.shape[0] #this will gave total amount of rows that is m
     dj_dw=0
     dj_db=0 #make initial parameter equal to 0 for futute update
@@ -44,7 +44,7 @@ def compute_gradient(x,y,w,b):
 
     return dj_dw, dj_db # update value 
 
-print(compute_gradient(x_train,y_train,50,100))
+print(compute_gradient(x_train,y_train,0,0))
 
 # Gradient Descent computation 
 
@@ -88,9 +88,9 @@ def gradient_descent (x,y,w_in,b_in,alpha,num_iters,cost_function,gradient_funct
             p_history.append([w,b])
         # Print cost every at intervals 10 times or as many iteration if <10
         if i% math.ceil(num_iters/10)==0:
-            print(f"Iteration {i:4} : cost {J_history[-1]:0.2e}",
-                  f"dj_dw: {dj_dw: 0.3e},dj_db: {dj_db:0.3e}",
-                  f"w:{w:0.3e},b:{b:0.5e}")
+            print(f"Iteration {i:4} : cost {J_history[-1]} ",
+                  f"dj_dw: {dj_dw}  ,dj_db: {dj_db}",
+                  f"w:{w},b:{b}")
     return w,b,J_history,p_history #return w and J,w  history for graphic
 
 # initialize parameters
@@ -103,3 +103,7 @@ tmp_alpha = 1.0e-2
 w_final, b_final, J_hist, p_hist = gradient_descent(x_train ,y_train, w_init, b_init, tmp_alpha, 
                                                     iterations, compute_cost, compute_gradient)
 print(f"(w,b) found by gradient descent: ({w_final:8.4f},{b_final:8.4f})")
+
+print(f"1000 sqft house prediction {w_final*1.0 + b_final:0.1f} Thousand dollars")
+print(f"1200 sqft house prediction {w_final*1.2 + b_final:0.1f} Thousand dollars")
+print(f"2000 sqft house prediction {w_final*2.0 + b_final:0.1f} Thousand dollars")
