@@ -91,3 +91,41 @@ cost = compute_cost(X_train, y_train, w_init, b_init)
 print(f'Cost at optimal w : {cost}')
 
 
+# compute gradient with multiple values 
+
+def compute_gradient(X,y,w,b):
+    """
+    Computes the gradient for linear regression 
+    Args:
+      X (ndarray (m,n)): Data, m examples with n features
+      y (ndarray (m,)) : target values
+      w (ndarray (n,)) : model parameters  
+      b (scalar)       : model parameter
+      
+    Returns:
+      dj_dw (ndarray (n,)): The gradient of the cost w.r.t. the parameters w. 
+      dj_db (scalar):       The gradient of the cost w.r.t. the parameter b. 
+    """
+    m,n=X.shape
+    dj_dw=np.zeros((n,))
+    dj_db=0.
+
+    for i in range(m):
+        err=(np.dot(X[i],w)+b)-y[i] # we find X[0] == [ 2104,5,1,45] with calculation of w==[0.39133535,18.75376741,-53.36032453,-26.42131618] substract y[460]
+        for j in range(n):
+            print(f"update of w before loop {dj_dw}")
+            dj_dw[j]=dj_dw[j]+err*X[i,j] # after we find for X[0] we move to loop for each of the column calculation in a row X[0]
+            #it will be at first 0[0] = 0[0] + our calcualtion for X[0] multiply by X[0,0] and record it and do same calculation but for X[0,1] and till X[3,4]
+        dj_db=dj_db+err
+        print(f"update of w {dj_dw}")
+    print(f"update of w before substraction of m: {dj_dw}")
+    dj_dw=dj_dw/m
+    dj_db=dj_db/m
+    
+
+    return dj_db,dj_dw
+
+#Compute and display gradient 
+tmp_dj_db, tmp_dj_dw = compute_gradient(X_train, y_train, w_init, b_init)
+print(f'dj_db at initial w,b: {tmp_dj_db}')
+print(f'dj_dw at initial w,b: \n {tmp_dj_dw}')
