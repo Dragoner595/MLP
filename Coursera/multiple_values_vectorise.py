@@ -58,7 +58,7 @@ def prediction(x,w,b):
     p=np.dot(x,w)+b
     return p 
 
-# will use same x_vec from before and create new vector f_wb
-f_wb_vector=prediction(x_vec,w_init,b_init)
+# will use same x_vec from before and create new vector f_wb_dot
+f_wb_dot=prediction(x_vec,w_init,b_init)
 
-print(f"F_wb_vector: {f_wb_vector.shape}, prediction dor porduct : {f_wb_vector}")
+print(f"F_wb_vector: {f_wb_dot.shape}, prediction dor porduct : {f_wb_dot}")
