@@ -15,4 +15,50 @@ b_init= 785.1811367994083
 w_init=np.array([0.39133535,18.75376741,-53.36032453,-26.42131618])
 
 def predict_single_loop(x,w,b):
+    """
+    single predict using linear regression
     
+    Args:
+      x (ndarray): Shape (n,) example with multiple features
+      w (ndarray): Shape (n,) model parameters    
+      b (scalar):  model parameter     
+      
+    Returns:
+      p (scalar):  prediction
+    """
+    n = x.shape[0]
+    p = 0
+    for i in range(n):
+        p_i=x[i]*w[i]
+        p=p+p_i
+    p=p+b
+    return p
+
+# get a row from our training data 
+x_vec=X_train[0,:]
+print(f"x_vec shape {x_vec.shape} , x_vec value: {x_vec}")
+
+# make a prediction 
+f_wb = predict_single_loop(x_vec, w_init,b_init)
+print(f"f_wb_shape {f_wb.shape}, prediction loop: {f_wb}")
+
+# will performe same calculation but with dot product function 
+
+def prediction(x,w,b):
+    """
+    single predict using linear regression
+    Args:
+      x (ndarray): Shape (n,) example with multiple features
+      w (ndarray): Shape (n,) model parameters   
+      b (scalar):             model parameter 
+      
+    Returns:
+      p (scalar):  prediction
+    """
+    p=np.dot(x,w)+b
+    return p 
+
+# will use same x_vec from before and create new vector f_wb
+f_wb_vector=prediction(x_vec,w_init,b_init)
+
+print(f"F_wb_vector: {f_wb_vector.shape}, prediction dor porduct : {f_wb_vector}")
