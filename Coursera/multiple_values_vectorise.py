@@ -62,3 +62,32 @@ def prediction(x,w,b):
 f_wb_dot=prediction(x_vec,w_init,b_init)
 
 print(f"F_wb_vector: {f_wb_dot.shape}, prediction dor porduct : {f_wb_dot}")
+
+# compute cost with multiple variables 
+
+def compute_cost (X,y,w,b):
+    """
+    compute cost
+    Args:
+      X (ndarray (m,n)): Data, m examples with n features
+      y (ndarray (m,)) : target values
+      w (ndarray (n,)) : model parameters  
+      b (scalar)       : model parameter
+      
+    Returns:
+      cost (scalar): cost
+    """
+    m = X.shape[0]
+    cost=0
+
+    for i in range(m):
+        f_wb_i = np.dot(X[i],w)+b
+        cost = cost+(f_wb_i-y[i])**2
+    cost=cost/(2*m)
+    return cost 
+
+# Compute and display cost using our pre-chosen optimal parameters. 
+cost = compute_cost(X_train, y_train, w_init, b_init)
+print(f'Cost at optimal w : {cost}')
+
+
