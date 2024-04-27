@@ -44,7 +44,7 @@ def compute_gradient(x,y,w,b):
 
     return dj_dw, dj_db # update value 
 
-print(compute_gradient(x_train,y_train,0,0))
+#print(compute_gradient(x_train,y_train,0,0))
 
 # Gradient Descent computation 
 
