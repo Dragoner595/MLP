@@ -12,9 +12,10 @@ def compute_cost(x,y,w,b):
     for i in range(m):
         f_wb=w*x[i]+b
         cost=cost+(f_wb-y[i])**2
-        total_cost=1/(2*m)*cost
+        
+    total_cost=1/(2*m)*cost
 
-        return total_cost
+    return total_cost
     
 def compute_gradient(x,y,w,b):
     """
