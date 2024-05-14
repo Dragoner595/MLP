@@ -2,6 +2,8 @@ import numpy as np
 from scipy.special import expit
 import math
 
+#!!!!Remember that the cost function gives you a way to measure how well a specific set of parameters fits the training data. Thereby gives you a way to try to choose better parameters.
+
 # function of sigmoid 
 # def sigmoid(x):
 #  return 1 / (1 + math.exp(-x))
