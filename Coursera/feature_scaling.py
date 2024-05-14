@@ -1,6 +1,7 @@
 import numpy as np
 #imported function from function file where i insert all function that i wrote before
 from function import compute_cost,compute_gradient,gradient_descent
+import pandas as pd 
 
 def zscore_normalize_features(X):
     """
@@ -135,6 +136,16 @@ y_train=np.array([300.  , 509.8 , 394.  , 540.  , 415.  , 230.  , 560.  , 294.  
        258.  , 378.  , 350.  , 412.  , 373.  , 225.  , 390.  , 267.4 ,
        464.  , 174.  , 340.  , 430.  , 440.  , 216.  , 329.  , 388.  ,
        390.  , 356.  , 257.8 ])
+
+df1=pd.DataFrame(X_train,columns=[['size(sqft)','bedrooms','floors','age']])
+df2=pd.DataFrame(y_train,columns=['price'])
+
+df1.to_csv('X_train.csv',index=False)
+df2.to_csv('y_train.csv',index=False)
+
+df1.to_excel('X_train.xlsx',engine='xlsxwriter')
+df2.to_excel('y_train.xlsx',engine='xlsxwriter')
+
 
 X_features = ['size(sqft)','bedrooms','floors','age']
 w_init = np.array([0,0,0,0]) 

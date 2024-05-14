@@ -129,8 +129,8 @@ def compute_gradient(X,y,w,b):
 
 # Compute and display gradient 
 tmp_dj_db, tmp_dj_dw = compute_gradient(X_train, y_train, w_init, b_init)
-#print(f'dj_db at initial w,b: {tmp_dj_db}')
-#print(f'dj_dw at initial w,b: \n {tmp_dj_dw}')
+print(f'dj_db at initial w,b: {tmp_dj_db}')
+print(f'dj_dw at initial w,b: \n {tmp_dj_dw}')
 
 
 # Gradient descent with Multiple Varialbles 
