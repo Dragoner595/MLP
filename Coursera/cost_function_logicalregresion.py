@@ -44,16 +44,16 @@ def compute_cost_logistick(X,y,w,b):
     cost = (1/m)*cost
     return cost
 
-X =np.array([[0.5,1.5],[1,1],[1.5,0.5],[3,0.5],[2,2],[1,2.5]])
-y = np.array([0,0,0,1,1,1])
+#X =np.array([[0.5,1.5],[1,1],[1.5,0.5],[3,0.5],[2,2],[1,2.5]])
+#y = np.array([0,0,0,1,1,1])
 
 #first variable
-w_array1=np.array([1,1])
-b_1= -3
+#w_array1=np.array([1,1])
+#b_1= -3
 # secodn variable 
-w_array2=np.array([1,1])
-b_2= -4
+#w_array2=np.array([1,1])
+#b_2= -4
 
-print('cost for b = -3 :',compute_cost_logistick(X,y.reshape(-1),w_array1.reshape(-1),b_1))
-print('cost for b = -4 :',compute_cost_logistick(X,y.reshape(-1),w_array2.reshape(-1),b_2))
+#print('cost for b = -3 :',compute_cost_logistick(X,y.reshape(-1),w_array1.reshape(-1),b_1))
+#print('cost for b = -4 :',compute_cost_logistick(X,y.reshape(-1),w_array2.reshape(-1),b_2))
 # -4 worse model for training data

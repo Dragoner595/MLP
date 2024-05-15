@@ -1,6 +1,6 @@
 import numpy as np
 #imported function from function file where i insert all function that i wrote before
-from function import compute_cost,compute_gradient,gradient_descent
+from Coursera.function_liner_regresion import compute_cost,compute_gradient,gradient_descent
 import pandas as pd 
 
 def zscore_normalize_features(X):
