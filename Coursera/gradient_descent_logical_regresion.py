@@ -23,6 +23,10 @@ def compute_gradient_logistic(X,y,w,b):
     y : (ndarray shape (m,))  actual values 
     w : (ndarray shape (n,))  parameters of the model
     b : (scalar)              parameter of the model 
+
+    Return:
+    dj_dw (ndarray Shape (n,)): The gradient of the cost w.r.t the parameters w
+    dj_db(scalar)             : The gradient of the cost w.r.t the parameter b
     """
 
     m,n=X.shape
