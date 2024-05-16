@@ -33,20 +33,21 @@ def compute_gradient_logistic_reg(X,y,w,b,lambda_):
     dj_dw = dj_dw / m
     dj_db = dj_db / m 
 
-    for i in range(n):
+    for j in range(n):
         dj_dw[j] = dj_dw[j]+(lambda_/m)*w[j] # if forgot check your notebook to see how it decreasing w value 
 
     return dj_db,dj_dw
 
-X_tmp=np.array([[0.5,1.5],[1,1],[1.5,0.5],[3,0.5],[2,2],[1,2.5]])
-y_tmp= np.array([0,0,0,1,1,1])
-w = np.array([2.,3.])
-b = 1.
+X_tmp=np.random.rand(5,3)
+y_tmp= np.array([0,1,0,1,0])
+w = np.random.rand(X_tmp.shape[1])
+b = 0.5
+lambda_tmp=0.7
 
-dj_db,dj_dw = compute_gradient_logistic_reg(X_tmp,y_tmp,w,b,1)
-print(f'dj_dw,non_vectorized version:{dj_dw}')
-print(f'dj_db,non_vectorized version:{dj_db}')
+dj_db,dj_dw = compute_gradient_logistic_reg(X_tmp,y_tmp,w,b,lambda_tmp)
+print(f'dj_dw,Regularized:{dj_dw}')
+print(f'dj_db:{dj_db}')
 
 dj_db,dj_dw = compute_gradient_logistic(X_tmp,y_tmp,w,b)
-print(f'dj_dw,non_vectorized version:{dj_dw}')
-print(f'dj_db,non_vectorized version:{dj_db}')
+print(f'dj_dw,Not-Regularized:{dj_dw}')
+print(f'dj_db:{dj_db}')
