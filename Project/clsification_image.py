@@ -61,8 +61,41 @@ test_datagen =  ImageDataGenerator(rescale = 1. /255)
 
 # Generating training image with batches of 20 
 # image clasification deals only with cat and dogs so we select class mode binary 
-train_generator = train_datagen.flow_from_directory(train_dir,target_size = (150,150),batch_size = 20, class_mode = 'binary')
+train_generator = train_datagen.flow_from_directory(
+    train_dir,target_size = (150,150),
+    batch_size = 16, 
+    class_mode = 'binary'
+    )
 
 # Copy same code jsut change to test sample 
-test_generator = test_datagen.flow_from_directory(test_dir,target_size = (150,150),batch_size = 20, class_mode = 'binary')
+validation_generator = test_datagen.flow_from_directory(
+    test_dir,target_size = (150,150),
+    batch_size = 16, 
+    class_mode = 'binary')
 
+from tensorflow.keras.optimizers import RMSprop 
+
+model_1 = tf.keras.models.Sequential([
+    tf.keras.layers.Conv2D(64,input_shape = [150,150,3],kernel_size = (3,3),activation = 'relu'),
+    tf.keras.layers.MaxPooling2D(pool_size = (2,2)),
+    # not adding imput shape becauze provide shape in original layer of model 
+    tf.keras.layers.Conv2D(128,kernel_size = (3,3),activation = 'relu'),
+    tf.keras.layers.MaxPooling2D(pool_size = (2,2)),
+    # creating flatten layer to transfer from 2d feature extractopn map onto one dimensional 
+    tf.keras.layers.Flatten(),
+    #creating Dense layer it will have 256 neirons 
+    tf.keras.layers.Dense(256,activation = 'relu'),
+    # last layer will ahve only one neuron because of binary clasification , it will have only one vector of probability to what class it belongs too 
+    tf.keras.layers.Dense(1,activation = 'sigmoid'),
+                                     ])
+
+model_1.summary()
+model_1.compile(loss='binary_crossentropy',optimizer=RMSprop(learning_rate=1e-4),metrics = ['acc'])
+
+#now we will train the model 
+train_model = model_1.fit(
+    train_generator,steps_per_epoch = 100, # 2000 images = batch_size*steps
+    epochs = 25,
+    validation_data = validation_generator,
+    validation_steps = 50, # 1000 images = batch_size*steps
+    verbose = 2)
